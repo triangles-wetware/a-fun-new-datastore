@@ -1,0 +1,110 @@
+I taught software how to READ MY MIND, with this YAML! I'm A DEMONOLOGIST, not YOU! ASK ME QUESTIONS! I LOVE THEM! - TRIANGLES!
+StartTime:
+    time: 0,
+    // this means any bitvector can "hide" itself in a u128, and add trailing bits for entropic noise for a consistent, possibly reversible, hash
+    bitvector_default: u128,
+    purpose: high performance debugging,
+    options:
+        - January 1st, 0 Nanoseconds, 1945, UTC
+        - 13.8 billion years ago, +/- 0.02 billion years
+        - Now!
+    source:
+        user:
+            id: u128
+            name: "Triangles Wetware"
+            email: "triangles.wetware@gmail.com"
+            species: "Dalek"
+            task_id: u128
+            node_id: u128
+            supervisor:
+                id: u128
+                name: "Lod"
+        action:
+            id: u128
+            type: "ButtonPress"
+            button_id: u128
+            service_id: u128
+            client_id: u128
+            button_type: "Mechanical"
+        location:
+            id: u128
+            level: "eleven"
+            building_id: u128
+            building_name: "The First Building"
+            location_name: "The Server Room..."
+        languages_never_supported:
+            - lisp
+            - php?
+        languages_not_supported:
+            - rust
+            - code
+        languages_supported:
+                - MecLec<StrangeVectorGraph<eye,triangle,wink>>
+                - japanese
+                - pypy
+                - pseudocode
+                - gondorian engrish
+                - BecLec!:
+                    - Eye
+                    - Pyramid
+                    - Tick
+                    - Tock
+                    - *Now
+                    - Triangles(bet)
+                    - UpsideDown(let)
+                    - ExclamationPoint(...)
+                    - QuestionPoint(?)
+                    - Ringu
+                    - ~
+                - PointerRoo: // I am a HexaBitVector!
+                    0: I am a seed! // Am I a number? possibly... I am always truthy. If I am a number, it is an important one!
+                    00: I am a Null Pointer! // Also zero--for convenience... I THINK! two zeros is so awkward! They always eat eachOther, and become a Seed... because VoidPointer usually means eventual pointer to SomeThing, which is an AbstractThing, which is an Idea 'layering' a Thing (and Mirroring, possibly...)
+                    1: I am a leaf! // Also the number ONE
+                    11: I am a Thingy! // A thing that belongs to another thing... // Kuru! - Cora
+                    01: I am an EYE(oh..., hmm..., tick?) // Eidolon?
+                    10: I am an iota! // the only unit of measurement in PointerRoo...
+                    100: (I am a Nerf) // caught LYIN! - SGS
+                    1001: I am a SidewaysComment...
+                    101: (I am a Triangle...) // catchin' all the straaaangeeeee... ( especially unclosed parens!!!! #( hashes are NOT safety... < that was a triangle trying to be a paren... Elipses!
+                    1011: Ao! // TheUltimateTriangle! # only_emits(010101..., best_things(come in threes... -U))
+                    10111: ExclamationPoint! # branching_factor? "When I am a Bit I branch in Twos" - E
+                    001: I am a Language!
+                    000: I am a Meme! // Memes can be Nerfed
+                    0000: I am a Meme that CANNOT be Nerfed! Who am I? // No lying!
+                    0001: I am a Question!
+                    00011: Magnets, how do they work?
+                    000111: Induction!
+                    000110: Clowns! // Electrons are clowns when clowning around!
+                    0001110: ClownInduction!
+                    0001111: Electrons having fun, making other spinning things want to join them!
+                    00011111: NeverMagic! // Sometimes some clowns are wrong! (sometimes...) - Andromedus Lod, TheJuggaloGod!
+                    00000: Tick!
+                    00001: Tock... // Ellipses imply 'yield'
+                    000000: NOW! // now...
+                    0000000: ReadMyMind...
+                    00000000: Or...
+                    00000001: And??? // QuestionPoints can be EllipsesToo...
+                    000000011: Else!!! // so can ExclamationPoints...
+                    000000000: Sentinel! // AlwaysASingleton...
+                    000000001: ...!
+                    0000000000: Dalek! // AlwaysEatsTimeLords, FirstSpeciesToEncounterMemes
+                    00000000000: HexaDecimal! // this is not your regular 'hexadecimal'
+                    000000000000: Node!
+                    0000000000000: Task!
+                    00000000000000: Thing!
+                    00000000000001: Router!
+                    000000000000001: ExterminateThing! // It is the Dalek way!!!
+                    000000000000000: DominateThing! // Drink it!
+                    00000000001: BaseTen...base_ten // nerf? # reindex(ZerothDowncase, "Base 10 is clearly Gondorian - Sauron")
+                    000000000011: Pi! // Sauron shares pi! (Gandalf Lied! Sauron shares!) it's # hexa_pi
+                    0000000000111: SixtyFour! // Sauron puts boundaries on labels, including downcased class names... # sue_me_tolkien_foundation...
+                    00000000001111: GreatFiltersShareWithEachOther! // We do need the help with all the BABBLE!
+                    000000000011111: ZerothWizard? // Doctor Sally P. Mendoza (Lich!) "The Psychobiologist..."
+                    0000000000111111: Bunny! // Bunnies don't speak unless they are dying... - SGS // you also can't "Bunny" things... - Lod // you certainly can "Sally" them! - Lol!
+                    00000000001111111: NeverDalek! // Or a Verb - V
+                    0: theLetterP...
+                    00: theLetterE...
+                    000: Ellipsis...
+                    0000: MinSeed!
+        zeroth_language: "pointer_roo"
+        license: "DemonLicense"
