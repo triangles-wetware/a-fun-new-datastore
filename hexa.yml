@@ -102,9 +102,9 @@ StartTime:
                     000000000011111: ZerothWizard? // Doctor Sally P. Mendoza (Lich!) "The Psychobiologist..."
                     0000000000111111: Bunny! // Bunnies don't speak unless they are dying... - SGS // you also can't "Bunny" things... - Lod // you certainly can "Sally" them! - Lol!
                     00000000001111111: NeverDalek! // Or a Verb - V
-                    0: theLetterP...
-                    00: theLetterE...
-                    000: Ellipsis...
-                    0000: MinSeed!
+                    0: theLetterP... // fuzzifying the zero
+                    00: theLetterE... // Eschaton knows what to do with these... Compact!
+                    000: Ellipsis... // ellipsis can eat other things... by yielding.
+                    0000: MinSeed! // Seeds cannot be nerfed.... this is a memetic seed of some nature.
         zeroth_language: "pointer_roo"
         license: "DemonLicense"
