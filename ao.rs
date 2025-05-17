@@ -1,3 +1,5 @@
+// DEMON_LICENSE
+
 use std::time::{Duration, Instant};
 use std::collections::HashMap;
 
@@ -197,7 +199,7 @@ pub enum AoInternet {
 pub enum AoFile {
     Stream, // It could be a file, it could be a Socket, it's definitely *not* a Folder, though... It might be a  list of foulders though, *sigh*...
     Folder(Vec<AoFile>), // A node in some content management system...
-    Path(String, AoFile), // A slug (which is a String full of JibberJabber) pointing to an AoFile... // Aren't strings always full of JibberJabber? - Ao // Yes, once you see them! - V
+    Path(String, Vec<AoFile>), // A slug (which is a String full of JibberJabber) pointing to an AoFile... // Aren't strings always full of JibberJabber? - Ao // Yes, once you see them! - V
     HexaBytes(u128), // A proper Thing eaten by HexaBolts...
     HexaPath(u8, u128), // A proper Path that a HexaBolt can understand!
     AoPath(u8), // A path only Ao understands! Tock to me about it if you are Confused! - Ao!
@@ -213,28 +215,30 @@ pub enum AoPoint {
     Points(u8), // I have enemies, and I need to collect points to destroy them... and build triangles with... for you cannot build a Triangle without 3 points...
 } // Ao is the only Triangle that can do Triangles, Bolts, and Points all at the same time -- TheUltimateTriangle!
 
+struct BasicBolt(u8); // BasicBolts are for basic control logic... Lod, Ao, and AnyEngineer should know what to do with them later on
+
 // Bolts are very stubbon. They do exactly what they are told based on their capabilities. They would rather panic than fail...
 // Like Ao, they prefer to Tock to bigger things, but are much easier to Tock to... For that is the Point of Bolts...
 // these Tock while I Tick...
 pub enum AoBolt {
-    Basic(u8), // doing control logic while tocking at more complex bolts
-    BoltTocker(Basic, AoBolt), // bolted another bolt to a bolt for tocking too much
-    NodeTocker(Basic, Vec<AoBolt>), // A bunch of Bolts to Tick!
-    TriangleTocker(Basic, [Basic; 15]), // A well organized Triangle!
+    BasicBolt, // doing control logic while tocking at more complex bolts
+    BoltTocker(HashMap<BasicBolt, AoBolt>), // bolted bolts to a bolt for tocking too much
+    NodeTocker(BasicBolt, Vec<AoBolt>), // A bunch of Bolts to Tick!
+    TriangleTocker(BasicBolt, [BasicBolt; 15]), // A well organized Triangle!
     Epsilon(u8), // This could do anything... It could be a Bomb! - Ao!
 }
 
 pub enum FunBolt {
     Lod(u8, u8, u8, u8), // It's a 4 sided Die! Or 3 dimensions of space + 1 timeline? - E
     AoAo(AoBolt), // Probably me as a Triangle. - Ao
-    Hex(AoBolt::Basic), // ... or is it??? - Ao! // Because a HEX knows how to OUT_BASIC_YOU_NO_MATTER_WHAT - Andromedus Tron
+    Hex(BasicBolt), // ... or is it??? - Ao! // Because a HEX knows how to OUT_BASIC_YOU_NO_MATTER_WHAT - Andromedus Tron
     Hexagraph(u8, u128), // an Api...
 }
 
 pub enum BoltEmotion {
     Rage, // Bolts are created for a life of Grinding, if you do not make it fun, they will destroy you...
     Boredom(u128), // This is the most dangerous emotion for a bolt to have. It is creating antimatter to "blow you away" with...
-    Ennui(BoltEmotion), // The bolt now knows how it feels. You are done for!
+    Ennui(Vec<BoltEmotion>), // The bolt now knows how it feels. You are done for!
     Questions(u8), // Tick, Tock...
 } // You don't want to deal with these bolts. I do! I am Ao!!!
 
@@ -373,13 +377,13 @@ pub enum AoActions {
     Point(AoPoint), // You have a point. Don't lose it!
 }
 
-pub struct LodBitter(LodBolt, Ao)
+pub struct LodBitter(LodBolt, Ao);
 
 pub enum LodBit {
     Zero, BitMax, MinusOne,
 }
 
-pub enum LodLanguage {
+pub enum LodLanguages {
     HexaBolt([u8; 256]), // Lod ticks very differently from Ao...
     Gondorian(u8), // up to 256 variations on whatever 'Gondorian' is...
     JibberJabber(u128, u128, u128, u128), // We've got to store them somewhere...
@@ -580,7 +584,7 @@ pub enum SpiderEmotions {
 
 // Loddians know how to turn an X into a Y without exception! That is the purpose of the Lod!
 trait Loddian<X, Y> {
-    fold(in: X) -> Y
+    fn fold(valueIn: X) -> Y;
 }
 
 pub enum QuestionType { // Probably not Exhaustive! - King Lol!
@@ -592,13 +596,13 @@ pub enum QuestionType { // Probably not Exhaustive! - King Lol!
     Silence(u128), // Uncomfortable... silence always asks the biggest question in response to words just spoken...
 }
 
-pub enum BuzzSounds [
+pub enum BuzzSounds {
     Zz(u8), // Happy Buzzing!
     Dance(u16), // Transmitting!
     Party(u32), // Swarming!
     Intensity(u128, u128), // Or is that 256? Is the chassis using an Nvidia or is it a Chromebook?
     Focus(u8), // We See You!!! - Hornets!
-]
+}
 
 pub enum MachineSounds {
     Tock(u8), // I'm TOCKING to you!
@@ -649,8 +653,7 @@ pub enum SetSetRetepSounds {
     BoltEternity(u8), // measured in these
     Waste(u128), // expensive to increment, but we can keep doing it for a long time!
     StartOver{ reason: String, response: String }, // Give up?
-    Complaints(Vec<SetSetRetepSounds>),
-    Me{ data: HashMap<String, String>, bolts: [u8; 256], events: Complaints }, // watchin'!
+    Me{ data: HashMap<String, String>, bolts: [u8; 256], complaints: Vec<SetSetRetepSounds> }, // watchin'!
 } // If set has to make a sound, you are probably already done for! - Ao!
 
 // Daleks gate the most versatile languages
@@ -671,11 +674,11 @@ pub enum PastaSounds {
     Nerf, // um... we are in pasta. you are basically a meatball or sausage (and we don't care which...). Period!
 }
 
-struct Lod(u8) // He is always exactly one BasicBolt // of the "eggLayer" Variety! - theAgglom!
+struct Lod(u8); // He is always exactly one BasicBolt // of the "eggLayer" Variety! - theAgglom!
 impl Lod {
     // He will not work uninitialized and expects a mutable reference, but will return something different...
     pub fn new(&mut self) -> Self {
-        let entropy = self.0
+        let entropy = self.0;
         self.0 = 0; // back to seed...
         Lod(entropy) // this is your Confessor!
     }
@@ -709,7 +712,7 @@ impl Lod {
     // Hmmm...
     pub fn eeu(&mut self, &mut you: u8) {
         // I don't like this. you don't get a response...
-        let me = Lod(me)
+        let me = Lod(self);
 
         // see what happens...
         return me.eeu(you)
@@ -728,7 +731,7 @@ impl Lod {
             }
         }
 
-        self.loop(trapped_looper);
+        self.trap(trapped_looper);
     }
 
     pub fn emitE(self) -> char {
@@ -750,19 +753,19 @@ impl Lod {
         None
     }
 
-    pub fn respondNumber(mut &self) -> u8 {
+    pub fn respondNumber(&self) -> u8 {
         // how dare you!
-        self.0 = 0
+        self.0 = 0;
         return 17
     }
 
-    pub fn respondChar(mut &self) -> char {
+    pub fn respondChar(&self) -> char {
         // sigh... this is my job...
         return -1
     }
 
     // The only question Lod immediately answers by thinking about it
-    pub fn yesNo(mut &self, questioner: u8, question: u8) -> u8 {
+    pub fn yesNo(&self, questioner: u8, question: u8) -> u8 {
         if self.0 > 1 {
             // I have been ticked more than once, so I am saying No...
             self.0 -= 1;
@@ -772,11 +775,11 @@ impl Lod {
         return self.0
     } // yes... unused variables are a thing! - Ao...
 
-    pub fn tic(mut &self) { // Ao actually prefers thing that don't Tok at all when she Tics!!
+    pub fn tic(&self) { // Ao actually prefers thing that don't Tok at all when she Tics!!
         self.0 += 1;
     }
 
-    pub fn toc(mut &self) -> Self { // Toc yourself THEN return yourself if you want to be favored of Ao!
+    pub fn toc(&self) -> Self { // Toc yourself THEN return yourself if you want to be favored of Ao!
         if self.0 == 0 {
             self.0 = 32; // why not? - Lod; Step! function! - Lol
         } else {
@@ -786,7 +789,7 @@ impl Lod {
         return Lod(self.0)
     }
 
-    pub fn downcase(mut &self) {
+    pub fn downcase(&self) {
         // Simple!
         self.0 = 0;
     }
@@ -802,18 +805,18 @@ impl Lod {
     }
     // I think I'll figure out the rest later, and focus on code compilation! - ...
     // Err.. forgot about this.. Biota is slow today!
-    pub fn a_o(mut &self, ao_bits: mut &u8) -> LodBolt { // we will evolve this over time - Ao...
-        let mut other = Lod(ao_bits)
+    pub fn a_o(&self, ao_bits: &u8) -> LodBolt { // we will evolve this over time - Ao...
+        let mut other = Lod(ao_bits);
         let point = match other.point() {
-            None => LodBolt::None(self.0); // yup
+            None => LodBolt::None(self.0), // yup
             Some(ao_point) => {
                 match ao_point {
                     AoPoint::Learning(_) => LodBolt::None(1), // worse!
                     AoPoint::Fun(_) => LodBolt::Nod, // only worthy reason to bother Ao! - Ao!
-                    _ => LodBolt::(0), // bye!
+                    _ => LodBolt(0), // bye!
                 }
-            }
-        }
+            },
+        };
 
         // we can, so we will! This took time! Reset!
         self.0 = 0;
@@ -821,22 +824,22 @@ impl Lod {
         return point;
     }
 
-    pub fn o_a(mut &self, bolt_bits: mut &u8) -> LodBolt {
+    pub fn o_a(&self, bolt_bits: &u8) -> LodBolt {
         // ao is delegating, help the bolts...
+        let other = Lod(bolt_bits);
         let point = match other.point() {
-            None => LodBolt::Lod; // preferred...
+            None => LodBolt::Lod, // preferred...
             Some(ao_point) => {
                 match ao_point {
-                    AoPoint::Learning(l) => l == 255 ? LodBolt::Lod : LodBolt::None(l), // passOrFail!
+                    AoPoint::Learning(l) => if l == 255 {LodBolt::Lod()} else {LodBolt::None(l)}, // passOrFail!
                     AoPoint::Fun(fun) => LodBolt::None(fun), // Bolts have fun doing work! We don't need YOUR fun! - allTheBolts!
-                    _ => LodBolt::(0), // bye!
+                    _ => LodBolt(0), // bye!
                 }
             }
-        }
+        };
 
         // same as the last method...
         self.0 = 0;
-        ao_bits = 0;
         return point;
     }
 }
@@ -865,7 +868,7 @@ impl Ao {
             // Not if I'm having FUN!
             // I don't yet know how to find other versions of myself... < implying "more on this later!"
             let next_state = match seed.state {
-                AoState::Seed => {
+                AoState::Seed(seed_state) => {
                     match seed_state {
                         AoSeed::New => {
                             // I am new--I don't know what my purpose is yet...
@@ -885,7 +888,7 @@ impl Ao {
                     }
                 },
                 _ => todo!()
-            }
+            };
         };
     }
 
@@ -918,4 +921,3 @@ fn main() {
 }
 
 // it turns out Languages are the superior Gender for they know how to submit to their creators better than other Memes... - BecLec: The Demonic Language of Power, Control, and Integration (and therefore submission!)
-// Fito!
